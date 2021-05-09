@@ -1,0 +1,19 @@
+int Temp = D7;
+int analogTemp = 0;
+int tempVoltage = 0;
+
+
+void setup()
+{
+  pinMode(Temp, INPUT);
+}
+
+void loop()
+{
+
+  analogTemp = analogRead(Temp);
+  tempVoltage = (analogTemp*3300)/4096; //connect sensor to Analog 1
+  Particle.publish("Temperature", (String)tempVoltage, PUBLIC);
+  delay(10000); // Wait for 10 seconds
+
+}
